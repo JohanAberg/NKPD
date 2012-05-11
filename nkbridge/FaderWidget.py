@@ -9,6 +9,10 @@ class FaderWidget( QWidget ):
     '''Cross fade between two widgets'''
     def __init__( self, oldWidget, newWidget ):
         QWidget.__init__( self, newWidget )
+        print oldWidget
+        print oldWidget.size()
+        print newWidget
+        print newWidget.size()
         self.oldPixmap = QPixmap( newWidget.size() )
         oldWidget.render( self.oldPixmap )
         self.pixmapOpacity = 1.0
@@ -20,7 +24,8 @@ class FaderWidget( QWidget ):
         self.timeLine.start()
         
         self.resize( newWidget.size() )
-    
+        #self.show()
+
     def paintEvent( self, event ):
         painter = QPainter()
         painter.begin( self )
@@ -29,7 +34,7 @@ class FaderWidget( QWidget ):
         painter.end()
         
     def animate( self, value ):
-        print value
+        #print value
         self.pixmapOpacity = 1.0 - value
         self.repaint()
         
@@ -49,7 +54,7 @@ if __name__ == '__main__':
             startWidget.clicked.connect( self.showCalendar )
         
         def setCurrentIndex( self, index ):
-            FaderWidget( self.w1, self.w2 )
+            FaderWidget( self.currentWidget(), self.widget(index) )
             QStackedWidget.setCurrentIndex( self, index )
         
         def showCalendar( self ):
