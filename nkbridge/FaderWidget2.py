@@ -3,7 +3,7 @@ import sys
 from PySide.QtGui import *
 from PySide.QtCore import *
 
-# SHOULD MAKE THIS A SUB CLASS OF QStackedWidget TO SIMPLIFY MAIN CODE
+# THIS IS NOT FUNCTIONAL YET!!!
 
 class FaderWidget( QStackedWidget ):
     '''Cross fade between two widgets'''
